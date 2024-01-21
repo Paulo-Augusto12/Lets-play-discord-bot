@@ -1,4 +1,29 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+
+function diceResultDescription(result) {
+  if (result < 10) {
+    return "This was a bad result 😢";
+  }
+  if (result >= 10 && result <= 15) {
+    return "This was an average result 😌";
+  }
+  if (result >= 15) {
+    return "This was an AWESOME result 😎";
+  }
+  if (result === 20) {
+    return "THIS WAS AN SUPERB RESULT 💫💫";
+  }
+}
+const embeds = (user, dice, result) => {
+  return new EmbedBuilder()
+    .setTitle(`${user.username} rolled a ${dice}`)
+    .setThumbnail(
+      `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
+    )
+    .setDescription(`🎲 the dice result was ${result}`)
+    .setColor("Purple")
+    .setFooter({text: diceResultDescription(result)})
+};
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -6,7 +31,7 @@ module.exports = {
     .setDescription("Will roll a dice")
     .addStringOption((option) =>
       option
-      .setRequired(true)
+        .setRequired(true)
         .setName("dice")
         .setDescription("Choose a dice")
         .addChoices(
@@ -33,10 +58,11 @@ module.exports = {
       }
     };
 
-    return await interaction.reply(
-      `🎲 ${
-        interaction.user.username
-      } Rolled a ${dice.toUpperCase()} and the result was ${rollDice()}`
-    );
+    // `🎲 ${
+    //   interaction.user.username
+    // } Rolled a ${dice.toUpperCase()} and the result was ${rollDice()}`
+    return await interaction.reply({
+      embeds: [embeds(interaction.user, dice.toUpperCase(), rollDice())],
+    });
   },
 };
