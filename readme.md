@@ -22,4 +22,9 @@ The bot will get two lists of games inserted by two or more users and reply a ra
 
 ### Giveaways
 
-The bot will receive an store option interaction and return the most popular giveaway game for this stora
+The bot will receive an store option interaction and return the most popular giveaway game for this store
+
+
+### Roll a dice
+
+The bot will roll a dice acccording with the user selected dice option
