@@ -1,4 +1,4 @@
-# Random Games bots
+# Random Games bot
 
 A discord bot developed with typescript using discord.js library
 
