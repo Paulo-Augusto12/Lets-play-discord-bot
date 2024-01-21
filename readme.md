@@ -28,3 +28,7 @@ The bot will receive an store option interaction and return the most popular giv
 ### Roll a dice
 
 The bot will roll a dice acccording with the user selected dice option
+
+### Toss a coin
+
+A heads or tails game
