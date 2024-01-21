@@ -12,6 +12,7 @@ module.exports = {
           { name: "Head", value: "head" },
           { name: "Tails", value: "tails" }
         )
+        .setRequired(true)
     ),
 
   async execute(interaction) {
