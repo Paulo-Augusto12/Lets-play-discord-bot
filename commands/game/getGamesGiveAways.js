@@ -4,7 +4,10 @@ async function getGiveaway(store) {
   const giveaway = await fetch(
     `https://www.gamerpower.com/api/giveaways?platform=${store}&type=game&sort-by=popularity`
   ).then((result) => result.json());
-
+  
+  if(!Array.isArray(giveaway)) {
+    return 'No active giveaways available at the moment, please try again later.'
+  }
   return giveaway[0];
 }
 
@@ -41,6 +44,11 @@ module.exports = {
   async execute(interaction) {
     const store = interaction.options.getString("store");
     const giveaway = await getGiveaway(store);
+
+    if(typeof giveaway === 'string') {
+     return await interaction.reply(giveaway)
+    }
+    
     await interaction.reply({
       embeds: [
         embeds(
