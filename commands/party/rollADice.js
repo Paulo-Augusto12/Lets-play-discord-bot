@@ -5,33 +5,37 @@ const {
   StringSelectMenuBuilder,
 } = require("discord.js");
 
-function diceResultDescription(result) {
-  if (result < 10) {
-    return "This was a bad result 😢";
-  }
-  if (result >= 10 && result <= 15) {
-    return "This was an average result 😌";
-  }
-  if (result >= 15) {
-    return "This was an AWESOME result 😎";
-  }
-  if (result === 20) {
-    return "THIS WAS AN SUPERB RESULT 💫💫";
-  }
-}
+// function diceResultDescription(result) {
+//   if (result < 10) {
+//     return "This was a bad result 😢";
+//   }
+//   if (result >= 10 && result <= 15) {
+//     return "This was an average result 😌";
+//   }
+//   if (result >= 15) {
+//     return "This was an AWESOME result 😎";
+//   }
+//   if (result === 20) {
+//     return "THIS WAS AN SUPERB RESULT 💫💫";
+//   }
+// }
 
 function getARandomSide(dice) {
   return Math.floor(Math.random() * dice - 1 + 1);
 }
 const embeds = (user, dice, result) => {
   return new EmbedBuilder()
-    .setTitle(`${user.username} rolled a ${dice}`)
+    .setTitle(`${user.username} rolled a D${dice}`)
     .setThumbnail(
       `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
     )
     .setDescription(`🎲 the dice result was ${result}`)
     .setColor("Purple")
-    .setFooter({ text: diceResultDescription(result) });
+    .addFields(
+      { name: "Minimun", value: "1", inline: true },
+      { name: "Maximun", value: `${dice}`, inline: true },
+      { name: "Result", value: `${result}`, inline: true }
+    ).setTimestamp(new Date().getTime())
 };
 
 module.exports = {
