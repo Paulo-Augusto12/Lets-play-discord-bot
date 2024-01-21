@@ -29,7 +29,12 @@ module.exports = {
         .setRequired(true)
         .addChoices(
           { name: "Epic Games", value: "epic-games-store" },
-          { name: "Steam", value: "steam" }
+          { name: "Steam", value: "steam" },
+          { name: "Ubisoft", value: "ubisoft" },
+          { name: "Itch.io", value: "itchio" },
+          { name: "Android", value: "android" },
+          { name: "Ios", value: "ios" },
+          { name: "Pc", value: "pc" }
         )
     ),
 
