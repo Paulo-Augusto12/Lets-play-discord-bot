@@ -1,24 +1,7 @@
 const {
   SlashCommandBuilder,
-  EmbedBuilder,
-  ActionRowBuilder,
-  StringSelectMenuBuilder,
+  EmbedBuilder
 } = require("discord.js");
-
-// function diceResultDescription(result) {
-//   if (result < 10) {
-//     return "This was a bad result 😢";
-//   }
-//   if (result >= 10 && result <= 15) {
-//     return "This was an average result 😌";
-//   }
-//   if (result >= 15) {
-//     return "This was an AWESOME result 😎";
-//   }
-//   if (result === 20) {
-//     return "THIS WAS AN SUPERB RESULT 💫💫";
-//   }
-// }
 
 function getARandomSide(dice) {
   return Math.floor(Math.random() * dice - 1 + 1);
