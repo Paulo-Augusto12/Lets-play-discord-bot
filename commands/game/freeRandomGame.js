@@ -17,7 +17,7 @@ async function getARandomGame() {
 const gameEmbed = (title, description, link, image) => {
   return new EmbedBuilder()
     .setColor("Purple")
-    .setTitle(`I think you should play ${title}`)
+    .setTitle(`Eu acho que você deveria jogar ${title}`)
     .setDescription(description)
     .setThumbnail(image)
     .setURL(link)
@@ -26,8 +26,8 @@ const gameEmbed = (title, description, link, image) => {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("free-random-game")
-    .setDescription("I will return a free and totally random game"),
+    .setName("jogo-aleatorio-gratuito")
+    .setDescription("Irá retornar um jgo totalmente aleatório e gratuito para jogar"),
 
   async execute(interaction) {
     const game = await getARandomGame();

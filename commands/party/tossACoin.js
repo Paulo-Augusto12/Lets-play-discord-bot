@@ -2,15 +2,15 @@ const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("toss-a-coin")
-    .setDescription("Will toss a coin and return heads or tails")
+    .setName("cara-ou-coroa")
+    .setDescription("Irei lançar uma moeda e retornar o resultado de seu lado")
     .addStringOption((option) =>
       option
         .setName("side")
-        .setDescription("Select a coin side")
+        .setDescription("Selecione um lado da moeda")
         .addChoices(
-          { name: "Head", value: "head" },
-          { name: "Tails", value: "tails" }
+          { name: "Cara", value: "head" },
+          { name: "Coroa", value: "tails" }
         )
         .setRequired(true)
     ),
@@ -25,14 +25,14 @@ module.exports = {
         options[Math.floor(Math.random() * options.length - 1 + 1)];
 
       if (side === result) {
-        return "won !";
+        return "venceu !";
       } else {
-        return "lost !";
+        return "perdeu !";
       }
     };
 
     return await interaction.reply(
-      `${interaction.user.username} chosed ${side} and ${getAOption()}`
+      `${interaction.user.username} escolheu ${side} e ${getAOption()}`
     );
   },
 };

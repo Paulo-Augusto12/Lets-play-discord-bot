@@ -6,7 +6,7 @@ async function getGiveaway(store) {
   ).then((result) => result.json());
   
   if(!Array.isArray(giveaway)) {
-    return 'No active giveaways available at the moment, please try again later.'
+    return 'Não há giveaways ativos no momento para a plataforma ou loja selecionada. tente novamente mais tarde'
   }
   return giveaway[0];
 }
@@ -23,12 +23,12 @@ const embeds = (title, description, image, link, thumbnail) => {
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("game-giveaways")
-    .setDescription("I will return a game giveaway from a selected store")
+    .setName("giveaways")
+    .setDescription("Vai retornar um giveaway a partir de uma store ou plataforma selecionada")
     .addStringOption((option) =>
       option
         .setName("store")
-        .setDescription("Select a store to see the better actual giveaway")
+        .setDescription("Selecione uma opção para ver o melhor giveaway dela atualmente")
         .setRequired(true)
         .addChoices(
           { name: "Epic Games", value: "epic-games-store" },
