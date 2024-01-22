@@ -9,8 +9,8 @@ module.exports = {
         .setName("side")
         .setDescription("Selecione um lado da moeda")
         .addChoices(
-          { name: "Cara", value: "head" },
-          { name: "Coroa", value: "tails" }
+          { name: "Cara", value: "cara" },
+          { name: "Coroa", value: "coroa" }
         )
         .setRequired(true)
     ),
@@ -19,7 +19,7 @@ module.exports = {
     const side = interaction.options.getString("side");
 
     const getAOption = () => {
-      const options = ["head", "tails"];
+      const options = ["cara", "coroa"];
 
       const result =
         options[Math.floor(Math.random() * options.length - 1 + 1)];
