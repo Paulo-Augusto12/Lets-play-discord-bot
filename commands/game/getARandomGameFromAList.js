@@ -91,7 +91,7 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    const random = interaction.options.getBoolean("aleatoria");
+    const random = interaction.options.getBoolean("lista-aleatoria");
     if (random === true) {
       const randomGame = await getARandomGame();
       return await interaction.reply({
