@@ -25,13 +25,13 @@ async function checkIfListAlreadyExist(userId, listTitle) {
   return true;
 }
 
-async function addListToUser(title, userId) {
+async function addListToUser(title, userId, description) {
   if (await checkIfListAlreadyExist(userId, title)) {
     return "Uma lista com este nome já existe";
   }
   const { error } = await supabase
     .from("gameLists")
-    .insert({ userId: userId, title: title });
+    .insert({ userId: userId, title: title, description: description });
 
   if (error !== null) {
     console.log(error);
@@ -60,12 +60,18 @@ module.exports = {
     .setDescription("Crie uma lista de jogos !")
     .addStringOption((option) =>
       option.setName("nome").setDescription("Nome da lista").setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("descricao")
+        .setDescription("Descrição da nova lista")
+        .setRequired(false)
     ),
 
   async execute(interaction) {
     const list = interaction.options.getString("nome");
-
-    const add = await addListToUser(list, interaction.user.id);
+    const description = interaction.options.getString("descricao");
+    const add = await addListToUser(list, interaction.user.id, description);
 
     if (add !== null) {
       return interaction.reply(add);
