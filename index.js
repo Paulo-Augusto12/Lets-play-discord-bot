@@ -46,7 +46,6 @@ client.on(Events.InteractionCreate, async (interaction) => {
       .from("users")
       .select()
       .eq("id", interaction.user.id);
-    console.log(data);
     if (data === null || !data.length) {
       const { error } = await supabase.from("users").insert({
         id: interaction.user.id,
