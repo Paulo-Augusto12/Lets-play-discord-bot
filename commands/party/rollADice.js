@@ -2,7 +2,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const embeds = (user, dice, result) => {
   return new EmbedBuilder()
-    .setTitle(`${user.username} rolou um D${dice}`)
+    .setTitle(`${user.username} rolou um dado de ${dice} lados`)
     .setThumbnail(
       `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`
     )
