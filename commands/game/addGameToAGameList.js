@@ -32,7 +32,7 @@ async function getUserGameLists(userId) {
 
 async function addGameToTheList(list, game) {
   const { data } = await supabase.from("gameLists").select().eq("id", list);
-  const gameJson = { title: game, image: "", description: "" };
+  const gameJson = { title: game, image: "", description: "", url: "" };
 
   if (data !== null && data.length) {
     const { error } = await supabase
