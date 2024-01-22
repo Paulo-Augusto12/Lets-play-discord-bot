@@ -32,7 +32,7 @@ module.exports = {
   async execute(interaction) {
     const game = await getARandomGame();
 
-    await interaction.reply({
+    return await interaction.reply({
       embeds: [
         gameEmbed(
           game.title,
