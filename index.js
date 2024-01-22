@@ -22,7 +22,7 @@ for (const folder of commandFolders) {
       client.commands.set(command.data.name, command);
     } else {
       console.log(
-        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
       );
     }
   }
@@ -51,7 +51,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
         id: interaction.user.id,
         username: interaction.user.username,
       });
-	  console.log(error)
+      console.log(error);
     }
     await command.execute(interaction);
   } catch (error) {

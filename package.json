@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "deploy": "node deploy-commands.js"
+    "deploy": "node deploy-commands.js",
+    "format": "prettier --write *.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
     "discord.js": "^14.14.1"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.4"
   }
 }
