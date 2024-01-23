@@ -20,7 +20,7 @@ module.exports = {
       .update({ jwt_token: token })
       .eq("id", interaction.user.id);
     const url = isDevelopment
-      ? `http://localhost:5173?userId=${interaction.user.id}token=${token}`
+      ? `http://localhost:5173?userId=${interaction.user.id}&token=${token}&username=${interaction.user.username}`
       : "";
     await interaction.reply(
       `${userMention(interaction.user.id)} clique ${hyperlink("aqui", url)} para ir ao nosso site para mais funcionalidades. Sua autenticação ao site já foi realizada !`
