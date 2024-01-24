@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, userMention, inlineCode } = require("discord.js");
+const { clientId } = require("../../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -21,7 +22,9 @@ module.exports = {
     });
 
     messages.forEach(async (message) => {
-      await message.delete();
+      if (message.author.id === clientId) {
+        await message.delete();
+      }
     });
 
     interaction.reply(
