@@ -14,11 +14,11 @@ module.exports = {
     ),
   async execute(interaction) {
     const channel = interaction.channel;
+    const qtde = interaction.options.getNumber("qtde");
     const messages = await channel.messages.fetch({
       before: interaction.id,
-      limit: 100,
+      limit: qtde,
     });
-    const qtde = interaction.options.getNumber("qtde");
 
     messages.forEach(async (message) => {
       await message.delete();
