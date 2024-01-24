@@ -22,8 +22,10 @@ module.exports = {
     });
 
     messages.forEach(async (message) => {
-      if (message.author.id === clientId) {
-        await message.delete();
+      if (message.author.id) {
+        if (message.author.id === clientId) {
+          await message.delete();
+        }
       }
     });
 
