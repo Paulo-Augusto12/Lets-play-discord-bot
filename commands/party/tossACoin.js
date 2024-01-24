@@ -1,5 +1,27 @@
-const { SlashCommandBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  userMention,
+  spoiler,
+  ButtonBuilder,
+  ActionRowBuilder,
+  ButtonStyle,
+} = require("discord.js");
+const { getUserAvatarUrl } = require("../../utils/getUserAvatarUrl");
 
+const embeds = (user, choice, result) => {
+  const avatar = getUserAvatarUrl(user.avatar, user.id);
+  return new EmbedBuilder()
+    .setAuthor({
+      name: user.username,
+      iconURL: avatar,
+    })
+    .setTitle("Lancei a moeda !")
+    .setDescription(
+      `${userMention(user.id)} escolheu ${choice} e... ${spoiler(result)}`
+    )
+    .setThumbnail(avatar);
+};
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("cara-ou-coroa")
@@ -31,8 +53,8 @@ module.exports = {
       }
     };
 
-    return await interaction.reply(
-      `${interaction.user.username} escolheu ${side} e ${getAOption()}`
-    );
+    return await interaction.reply({
+      embeds: [embeds(interaction.user, side, getAOption())],
+    });
   },
 };
