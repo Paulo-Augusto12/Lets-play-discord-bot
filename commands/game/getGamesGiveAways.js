@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, codeBlock } = require("discord.js");
 const { getUserAvatarUrl } = require("../../utils/getUserAvatarUrl");
 
 async function getGiveaway(store) {
@@ -12,7 +12,15 @@ async function getGiveaway(store) {
   return giveaway[0];
 }
 
-const embeds = (title, description, image, link, thumbnail, user) => {
+const embeds = (
+  title,
+  description,
+  image,
+  link,
+  thumbnail,
+  user,
+  instructions
+) => {
   return new EmbedBuilder()
     .setTitle(title)
     .setImage(image)
@@ -23,7 +31,8 @@ const embeds = (title, description, image, link, thumbnail, user) => {
     .setAuthor({
       name: user.username,
       iconURL: getUserAvatarUrl(user.avatar, user.id),
-    });
+    })
+    .addFields({name: 'Como conseguir este jogo ?',value: codeBlock("html", instructions)});
 };
 
 module.exports = {
@@ -66,7 +75,8 @@ module.exports = {
           giveaway.image,
           giveaway.open_giveaway,
           giveaway.thumbnail,
-          interaction.user
+          interaction.user,
+          giveaway.instructions
         ),
       ],
     });
