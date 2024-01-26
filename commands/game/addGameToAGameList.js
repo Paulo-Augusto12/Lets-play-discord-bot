@@ -9,18 +9,24 @@ const {
 const { supabase } = require("../../server/server");
 
 async function getUserGameLists(userId) {
-  const { data } = await supabase
+  const { data, error } = await supabase
     .from("gameLists")
     .select()
     .eq("userId", userId);
 
+  if (error) {
+    console.error(error);
+  }
   if (data !== null && data.length) {
+    console.log(data);
     return data.map((list) =>
       new StringSelectMenuOptionBuilder()
         .setLabel(list.title)
         .setDescription(
           list.description !== null
-            ? list.description
+            ? list.description.length !== 0
+              ? list.description
+              : "Nenhuma descrição informada"
             : "Nenhuma descrição informada"
         )
         .setValue(list.id)
