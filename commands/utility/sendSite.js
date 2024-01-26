@@ -13,7 +13,7 @@ module.exports = {
 
   async execute(interaction) {
     const token = jwt.sign({ id: interaction.user.id }, jwtSecret, {
-      expiresIn: 300,
+      expiresIn: "1h",
     });
     await supabase
       .from("users")
