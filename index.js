@@ -4,7 +4,9 @@ const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 const { token } = require("./config.json");
 const { supabase } = require("./server/server");
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+});
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
@@ -22,7 +24,7 @@ for (const folder of commandFolders) {
       client.commands.set(command.data.name, command);
     } else {
       console.log(
-        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`,
+        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
       );
     }
   }
