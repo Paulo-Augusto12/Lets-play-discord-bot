@@ -29,8 +29,14 @@ module.exports = {
       }
     });
 
-    interaction.reply(
-      `${userMention(interaction.user.id)} serão deletadas ${inlineCode(qtde)} mensagens que enviei neste canal !`
-    );
+    interaction
+      .reply(
+        `${userMention(interaction.user.id)} serão deletadas ${inlineCode(qtde)} mensagens que enviei neste canal !`
+      )
+      .then((response) =>
+        setTimeout(() => {
+          response.delete();
+        }, 3000)
+      );
   },
 };
