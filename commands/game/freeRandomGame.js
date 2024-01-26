@@ -1,4 +1,9 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  codeBlock,
+  inlineCode,
+} = require("discord.js");
 
 async function getARandomGame() {
   const game = await fetch(
@@ -14,7 +19,7 @@ async function getARandomGame() {
   return game;
 }
 
-const gameEmbed = (title, description, link, image) => {
+const gameEmbed = (title, description, link, image, requirements) => {
   return new EmbedBuilder()
     .setColor("Purple")
     .setTitle(`Eu acho que você deveria jogar ${title}`)
@@ -22,12 +27,32 @@ const gameEmbed = (title, description, link, image) => {
     .setThumbnail(image)
     .setURL(link)
     .setImage(image)
+    .addFields({
+      name: "Requisitos mínimos",
+      value: `Confira os requisitos mínimos para jogar ${title}`,
+    })
+    .addFields({ name: "Sistema:", value: inlineCode(requirements.os) })
+    .addFields({
+      name: "Processador:",
+      value: inlineCode(requirements.processor),
+    })
+    .addFields({ name: "Memória:", value: inlineCode(requirements.memory) })
+    .addFields({
+      name: "Armazenamento:",
+      value: inlineCode(requirements.storage),
+    })
+    .addFields({
+      name: "Placa de vídeo",
+      value: inlineCode(requirements.graphics),
+    });
 };
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("jogo-aleatorio-gratuito")
-    .setDescription("Irá retornar um jgo totalmente aleatório e gratuito para jogar"),
+    .setDescription(
+      "Irá retornar um jgo totalmente aleatório e gratuito para jogar"
+    ),
 
   async execute(interaction) {
     const game = await getARandomGame();
@@ -38,7 +63,8 @@ module.exports = {
           game.title,
           game.short_description,
           game.game_url,
-          game.thumbnail
+          game.thumbnail,
+          game.minimum_system_requirements
         ),
       ],
     });
