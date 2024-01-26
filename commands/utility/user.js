@@ -2,11 +2,12 @@ const {
   SlashCommandBuilder,
   EmbedBuilder,
   userMention,
-  time
+  time,
+  roleMention,
 } = require("discord.js");
 const { getUserAvatarUrl } = require("../../utils/getUserAvatarUrl");
 
-const embeds = (user, guild, joinedAt) => {
+const embeds = (user, guild, joinedAt, role, secundaryRoles) => {
   return new EmbedBuilder()
     .setAuthor({
       name: user.username,
@@ -22,8 +23,13 @@ const embeds = (user, guild, joinedAt) => {
     .setTimestamp(new Date().getTime())
     .setDescription(`Confira um pouco sobre o usuário ${userMention(user.id)}`)
     .addFields(
-      { name: "menção", value: userMention(user.id), inline: true }
-    ).addFields({ name: "Entrou neste canal em", value: time(new Date(joinedAt)) });
+      { name: "menção", value: userMention(user.id), inline: true },
+      { name: "Cargo Principal", value: roleMention(role), inline: true }
+    )
+    .addFields({
+      name: "Entrou neste canal em",
+      value: time(new Date(joinedAt)),
+    });
 };
 module.exports = {
   data: new SlashCommandBuilder()
@@ -31,13 +37,14 @@ module.exports = {
     .setDescription("Will retur information about the user"),
 
   async execute(interaction) {
-    console.log(interaction.member.roles);
+    const member = interaction.guild.members.cache.get(interaction.user.id);
     await interaction.reply({
       embeds: [
         embeds(
           interaction.user,
           interaction.guild,
-          interaction.member.joinedTimestamp
+          interaction.member.joinedTimestamp,
+          member.roles.highest.id
         ),
       ],
     });
