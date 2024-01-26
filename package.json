@@ -8,7 +8,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "deploy": "node deploy-commands.js",
-    "format": "prettier --write *.js"
+    "format": "prettier --write *.js",
+    "build": "node build.js"
   },
   "keywords": [],
   "author": "",
