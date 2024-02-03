@@ -1,0 +1,9 @@
+{
+  "clientId": "", 
+  "guildId": "", 
+  "token": "",
+  "jwtSecret": "",
+  "isDevelopment": true,
+  "projectUrl": "",
+  "serviceKey": ""
+}
