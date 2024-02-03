@@ -16,22 +16,18 @@ module.exports = {
   async execute(interaction) {
     const channel = interaction.channel;
     const qtde = interaction.options.getNumber("qtde");
-    const messages = await channel.messages.fetch({
+    await channel.messages.fetch({
       before: interaction.id,
       limit: qtde,
-    });
-
-    messages.forEach(async (message) => {
-      if (message.author.id) {
-        if (message.author.id === clientId) {
-          await message.delete();
-        }
-      }
-    });
+    }).then((receivedMessages ) => {
+      receivedMessages.forEach((m) => {
+        m.delete() 
+      })
+    })
 
     interaction
       .reply(
-        `${userMention(interaction.user.id)} serão deletadas ${inlineCode(qtde)} mensagens que enviei neste canal !`
+        `${userMention(interaction.user.id)} serão deletadas ${inlineCode(qtde)} mensagens enviadas neste canal !`
       )
       .then((response) =>
         setTimeout(() => {
