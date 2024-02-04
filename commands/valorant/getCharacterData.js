@@ -69,7 +69,7 @@ module.exports = {
 
       const agentAbilitiesDisplay = new ButtonBuilder()
         .setCustomId("abilities")
-        .setLabel(`Habilidades do(a) agente ${agent.displayName}`)
+        .setLabel(`Habilidades`)
         .setStyle(ButtonStyle.Primary)
         .setEmoji("🛠️");
 
