@@ -51,7 +51,7 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("jogo-aleatorio-gratuito")
     .setDescription(
-      "Irá retornar um jgo totalmente aleatório e gratuito para jogar"
+      "Irá retornar um jogo totalmente aleatório e gratuito para jogar"
     ),
 
   async execute(interaction) {
