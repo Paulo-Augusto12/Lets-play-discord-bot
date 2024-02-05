@@ -74,11 +74,11 @@ module.exports = {
     ),
 
   async execute(interaction) {
+    const user = interaction.user;
     const side = interaction.options.getString("side");
     const dealValue = interaction.options.getNumber("aposta");
     const databaseUser = await getUserFromSupabase(interaction.user.id);
     const userCannotMakeADeal = databaseUser.play_points < dealValue;
-
     if (userCannotMakeADeal) {
       return await interaction.reply(
         `${userMention(interaction.user.id)} você não tem a quantidade de play points inserida para apostar ! atualmente você tem ${inlineCode(databaseUser.play_points)} Play points para apostar`
@@ -109,6 +109,24 @@ module.exports = {
 
     const gameResult = await getAOption();
 
+    if (dealValue === null) {
+      return await interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setAuthor({
+              name: user.username,
+              iconURL: getUserAvatarUrl(user.avatar, user.id),
+            })
+            .setTitle("Lancei a moeda !")
+            .setDescription(
+              `${userMention(user.id)} escolheu ${side} e... ${gameResult}`
+            )
+            .setTimestamp(Date.now())
+            .setThumbnail(getUserAvatarUrl(user.avatar, user.id))
+            .setColor("Purple"),
+        ],
+      });
+    }
     return await interaction.reply({
       embeds: [
         embeds(interaction.user, side, gameResult, {
