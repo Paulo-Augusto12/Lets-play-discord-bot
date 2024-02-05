@@ -81,7 +81,7 @@ module.exports = {
 
     if (userCannotMakeADeal) {
       return await interaction.reply(
-        `${userMention(interaction.user.id)} você não tem a quantidade de play points inserida para apostar ! atualmente você tem ${codeBlock(databaseUser.play_points)}`
+        `${userMention(interaction.user.id)} você não tem a quantidade de play points inserida para apostar ! atualmente você tem ${inlineCode(databaseUser.play_points)} Play points para apostar`
       );
     }
     const getAOption = async () => {
