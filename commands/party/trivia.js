@@ -46,7 +46,6 @@ module.exports = {
     try {
       const user = interaction.user;
       const question = await getQuestion();
-      console.log(question);
       const buttons = question.answers.map((answer) =>
         new ButtonBuilder()
           .setLabel(answer)
