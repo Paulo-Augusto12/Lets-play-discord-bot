@@ -69,4 +69,4 @@ Contribuições e sugestões para melhorias são bem-vindas. Sinta-se à vontade
 
 ## Autor
 
-Este bot foi desenvolvido por [Paulo-Augusto12] e [OttoCg]. Para entrar em contato ou obter mais informações, visite [https://github.com/Paulo-Augusto12/random-game-bot].
+Este bot foi desenvolvido por [Paulo-Augusto12](https://github.com/Paulo-Augusto12) e [OttoCG](https://github.com/OttoCG). Para entrar em contato ou obter mais informações, confira o repositório do[Github](https://github.com/Paulo-Augusto12/random-game-bot).
