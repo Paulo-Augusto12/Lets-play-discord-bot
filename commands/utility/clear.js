@@ -12,18 +12,34 @@ module.exports = {
         .setMaxValue(100)
         .setMinValue(1)
         .setRequired(true)
+    )
+    .addUserOption((option) =>
+      option
+        .setName("usuario")
+        .setDescription(
+          "Selecione apenas um usuário para que suas mensagens sejam deletadas"
+        )
     ),
   async execute(interaction) {
     const channel = interaction.channel;
     const qtde = interaction.options.getNumber("qtde");
-    await channel.messages.fetch({
-      before: interaction.id,
-      limit: qtde,
-    }).then((receivedMessages ) => {
-      receivedMessages.forEach((m) => {
-        m.delete() 
+    const selectedUser = interaction.options.getUser("usuario");
+    await channel.messages
+      .fetch({
+        before: interaction.id,
+        limit: qtde,
       })
-    })
+      .then((receivedMessages) => {
+        receivedMessages.forEach((m) => {
+          if (selectedUser !== null) {
+            if (m.author.id === selectedUser.id) {
+              m.delete();
+            }
+          } else {
+            m.delete();
+          }
+        });
+      });
 
     interaction
       .reply(
