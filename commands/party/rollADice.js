@@ -29,9 +29,10 @@ module.exports = {
 
   async execute(interaction) {
     const dice = interaction.options.getNumber("lados");
-
     const rollDice = () => {
-      return Math.floor(Math.random() * dice - 1 + 1);
+      const min = Math.ceil(1)
+      const max = Math.ceil(dice)
+      return Math.floor(Math.random() * (max - min) + min);
     };
     return await interaction.reply({
       embeds: [embeds(interaction.user, `${dice}`, rollDice())],
