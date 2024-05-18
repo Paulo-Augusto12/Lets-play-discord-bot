@@ -34,7 +34,6 @@ async function addListToUser(title, userId, description) {
     .insert({ userId: userId, title: title, description: description });
 
   if (error !== null) {
-    console.log(error);
     return "Algo de errado aconteceu enquanto sua lista estava sendo criada. Por favor tente novamente mais tarde";
   }
 

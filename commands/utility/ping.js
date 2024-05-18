@@ -17,7 +17,6 @@ module.exports = {
     .setDescription("confere a latência do bot"),
   async execute(interaction) {
     const latency = Date.now() - interaction.createdTimestamp;
-    console.log(interaction.createdTimestamp);
     await interaction.reply({ embeds: [embeds(interaction.user, latency)] });
   },
 };

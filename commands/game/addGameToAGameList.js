@@ -18,7 +18,7 @@ async function getUserGameLists(userId) {
     console.error(error);
   }
   if (data !== null && data.length) {
-    console.log(data);
+    data;
     return data.map((list) =>
       new StringSelectMenuOptionBuilder()
         .setLabel(list.title)
@@ -52,7 +52,7 @@ async function addGameToTheList(list, game) {
       .eq("id", list);
 
     if (error) {
-      // console.log(error);
+      // (error);
     }
   }
 }
@@ -104,7 +104,7 @@ module.exports = {
         embeds: [embeds(gameTitle, interaction.user)],
       });
     } catch (err) {
-      // console.log(err, 'erro aqui')
+      // (err, 'erro aqui')
       return await interaction.reply("Something wrong just happened");
     }
   },
